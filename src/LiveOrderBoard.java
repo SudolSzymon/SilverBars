@@ -25,7 +25,7 @@ public class LiveOrderBoard {
             isNewOrderList = true;
         }
         ordersList.add(new Order(userID, orderQuantity, pricePerKg, type));
-        if(isNewOrderList)  // No need to do put it to map if it is already in the list as list will updated saves time
+        if (isNewOrderList)  // No need to do put it to map if it is already in the list as list will updated saves time
             orders.put(pricePerKg, ordersList);
     }
 
@@ -56,10 +56,7 @@ public class LiveOrderBoard {
         }
         return builder.toString();
     }
-
-
-
-
+    
 }
 
 
