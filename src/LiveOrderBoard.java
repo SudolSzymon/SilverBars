@@ -3,7 +3,7 @@ import java.util.*;
 public class LiveOrderBoard {
 
     //To keep orders used maps between orders at certain price and price to make it  fast and easy to  sum quantity for each  price as requested
-    //used tree map to keep entries sorted
+    //used tree map to keep entries sorted, it is less efficient than hash map the get summary is main functionality and it makes it easier and faster than sorting set of entries when ever we get summary
     private SortedMap<Double, List<Order>> buyOrders = new TreeMap<>((e1, e2) -> {
         if (e1.equals(e2))
             return 0;
@@ -25,7 +25,7 @@ public class LiveOrderBoard {
             isNewOrderList = true;
         }
         ordersList.add(new Order(userID, orderQuantity, pricePerKg, type));
-        if (isNewOrderList)  // No need to do put it to map if it is already in the list as list will updated saves time
+        if (isNewOrderList)  // No need to put it to map if it is already in the list as list will be updated, it saves time especially there wil be many orders for the same price most likely
             orders.put(pricePerKg, ordersList);
     }
 
@@ -56,7 +56,6 @@ public class LiveOrderBoard {
         }
         return builder.toString();
     }
-    
 }
 
 
