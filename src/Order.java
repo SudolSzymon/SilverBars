@@ -12,9 +12,7 @@ public class Order {
     public Order(String userID, int quantity, double price, OrderType type) {
         //require all these field to be  not nul  as are needed for  valid order
         requireNonNull(userID, "user id");
-        requireNonNull(price, "price per Kg");
         requireNonNull(type, "type of order");
-        requireNonNull(quantity, "quantity");
         this.type = type;
         this.userID = userID;
         this.quantity = quantity;
