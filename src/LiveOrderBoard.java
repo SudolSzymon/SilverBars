@@ -3,7 +3,8 @@ import java.util.*;
 public class LiveOrderBoard {
 
     //To keep orders used maps between orders at certain price and price to make it  fast and easy to  sum quantity for each  price as requested
-    //used tree map to keep entries sorted, it is less efficient than hash map the get summary is main functionality and it makes it easier and faster than sorting set of entries when ever we get summary
+    //used tree map to keep entries sorted, it is less efficient than hash map the get summary is main functionality and it makes it easier and faster than sorting set of entries when ever we get summary,
+    //it is assuming that get summary is called quite often if not hash map would be better
     private SortedMap<Double, List<Order>> buyOrders = new TreeMap<>((e1, e2) -> {
         if (e1.equals(e2))
             return 0;
@@ -42,7 +43,7 @@ public class LiveOrderBoard {
         return result;
     }
 
-    // Summary takes type as argument as depending on type those need to be sorted differently
+    // Summary takes type as argument as depending on type different summary must be created and need to be sorted differently
     public String getSummary(OrderType type) {
         SortedMap<Double, List<Order>> orders = type == OrderType.BUY ? buyOrders : sellOrders;
         StringBuilder builder = new StringBuilder();
@@ -56,6 +57,7 @@ public class LiveOrderBoard {
         }
         return builder.toString();
     }
+
 }
 
 

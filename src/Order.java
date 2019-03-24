@@ -10,13 +10,20 @@ public class Order {
     private double pricePerKg;
 
     public Order(String userID, int quantity, double price, OrderType type) {
-        //require all these field to be  not nul  as are needed for  valid order
-        requireNonNull(userID, "user id");
-        requireNonNull(type, "type of order");
         this.type = type;
         this.userID = userID;
         this.quantity = quantity;
         this.pricePerKg = price;
+        validate();
+    }
+
+    private void validate() {
+        requireNonNull(userID, "user id");
+        requireNonNull(type, "type of order");
+        if (pricePerKg < 0)
+            throw new IllegalStateException("Price must be greater or equal 0");
+        if (!(quantity > 0))
+            throw new IllegalStateException("Quantity must be positive ");
     }
 
     public int getQuantity() {
